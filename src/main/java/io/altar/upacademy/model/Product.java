@@ -1,12 +1,17 @@
 package io.altar.upacademy.model;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
-public class Product extends Entity{
+@javax.persistence.Entity
+public class Product extends Entity implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ArrayList <Shelf> listaPrateleiras = new ArrayList<Shelf>() ; //Uma lista de prateleiras onde est� exposto
 
 	private float produtoDesconto;
@@ -14,21 +19,8 @@ public class Product extends Entity{
 	private float produtoIVA;
 
 	private float produtoPVP;
-	
+	 
 	private String produtoNome;
-
-	public Product() {
-		
-	}
-
-
-	public Product(String produtoNome,float produtoDesconto, float produtoIVA, float produtoPVP) {
-		
-		this.produtoNome=produtoNome;
-		this.produtoDesconto = produtoDesconto;
-		this.produtoIVA = produtoIVA;
-		this.produtoPVP = produtoPVP;
-	}
 
 	
 	public ArrayList<Shelf> getListaPrateleiras() {

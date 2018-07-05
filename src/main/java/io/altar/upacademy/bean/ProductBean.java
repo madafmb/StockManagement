@@ -49,56 +49,56 @@ public class ProductBean implements Serializable {
 	public String createProduct(Product p) {
 		pc.criarProduto(p);
 
-		return "index";	
+		return "index" + "? faces-redirect=true ";	
 	}
-
-	public Collection<Product> getAllProduct() {
-		return pc.getProduto();	
-	}
-
-	public void onRowEdit(RowEditEvent editProduct) {
-
-		FacesMessage msg = new FacesMessage("Product Edited");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-
-	public void onRowCancel(RowEditEvent editProduct) {
-		FacesMessage msg = new FacesMessage("Edit Cancelled");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void deleteProduct(Product p) {
-		pc.removeProduto(p.getId());
-	}
-	
-
-    public Product getOption() {
-        return option;
-    }
- 
-    public void setOption(Product option) {
-        this.option = option;
-    }
-    
-    public String addShelf(Product p, Shelf s) {
-    	
-    	if(p.getListaPrateleiras().contains(s)) { return "index"; }
-    	if (s.getShelfProduto()!=null) {
-    		Product tempProduct= s.getShelfProduto();
-    		tempProduct.getListaPrateleiras().remove(s);
-    	}
-    	
-    		
-    	p.addToShelfList(s);
-    	s.setShelfProduto(p);
-    	pc.editarProduto(p);    
-       
-    	
-    	return "index";
-    	
-    	
-    }
+//
+//	public Collection<Product> getAllProduct() {
+//		return pc.getProduto();	
+//	}
+//
+//	public void onRowEdit(RowEditEvent editProduct) {
+//
+//		FacesMessage msg = new FacesMessage("Product Edited");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
+//	}
+//
+//
+//	public void onRowCancel(RowEditEvent editProduct) {
+//		FacesMessage msg = new FacesMessage("Edit Cancelled");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
+//	}
+//
+//	public void deleteProduct(Product p) {
+//		pc.removeProduto(p.getId());
+//	}
+//	
+//
+//    public Product getOption() {
+//        return option;
+//    }
+// 
+//    public void setOption(Product option) {
+//        this.option = option;
+//    }
+//    
+//    public String addShelf(Product p, Shelf s) {
+//    	
+//    	if(p.getListaPrateleiras().contains(s)) { return "index"; }
+//    	if (s.getShelfProduto()!=null) {
+//    		Product tempProduct= s.getShelfProduto();
+//    		tempProduct.getListaPrateleiras().remove(s);
+//    	}
+//    	
+//    		
+//    	p.addToShelfList(s);
+//    	s.setShelfProduto(p);
+//    	pc.editarProduto(p);    
+//       
+//    	
+//    	return "index" + "? faces-redirect=true ";	
+//    	
+//    	
+//    }
        
 
     

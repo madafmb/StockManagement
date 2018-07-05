@@ -39,37 +39,37 @@ public class ShelfBean implements Serializable {
 		shelf = s ;
 	}
 	
-	public String createShelf(Shelf s) {
-		sc.criarShelf(s);
-		return "index";	
-	}
-	
-	public Collection<Shelf> getAllShelf() {
-		return sc.getShelf();	
-	}
-	public void onRowEdit(RowEditEvent editShelf) {
-
-		FacesMessage msg = new FacesMessage("Shelf Edited");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-
-	public void onRowCancel(RowEditEvent editProduct) {
-		FacesMessage msg = new FacesMessage("Edit Cancelled");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void deleteShelf(Shelf s) {
-		sc.removeShelf(s.getId());
-	}
-	
-	public Shelf getOption() {
-        return option;
-    }
- 
-    public void setOption(Shelf option) {
-        this.option = option;
-    }
-    
+//	public String createShelf(Shelf s) {
+//		sc.criarShelf(s);
+//		return "index" + "? faces-redirect=true ";		
+//	}
+//	
+//	public Collection<Shelf> getAllShelf() {
+//		return sc.getShelf();	
+//	}
+//	public void onRowEdit(RowEditEvent editShelf) {
+//
+//		FacesMessage msg = new FacesMessage("Shelf Edited");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
+//	}
+//
+//
+//	public void onRowCancel(RowEditEvent editProduct) {
+//		FacesMessage msg = new FacesMessage("Edit Cancelled");
+//		FacesContext.getCurrentInstance().addMessage(null, msg);
+//	}
+//
+//	public void deleteShelf(Shelf s) {
+//		sc.removeShelf(s.getId());
+//	}
+//	
+//	public Shelf getOption() {
+//        return option;
+//    }
+// 
+//    public void setOption(Shelf option) {
+//        this.option = option;
+//    }
+//    
 
 }

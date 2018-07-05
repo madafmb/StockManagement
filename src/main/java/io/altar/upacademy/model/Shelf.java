@@ -1,19 +1,19 @@
 package io.altar.upacademy.model;
 
-public class Shelf extends Entity {
+import java.io.Serializable;
+
+@javax.persistence.Entity
+public class Shelf extends Entity implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int shelfCapacidade; //Capacidade
 	private Product  shelfProduto; // Produto que alberga
 	private float shelfPreco; // Pre�o de aluguer de localiza��o diario
 	
-	public Shelf(int shelfCapacidade, float shelfPreco) {
-		this.shelfCapacidade = shelfCapacidade;
-		this.shelfPreco = shelfPreco;
-	}
-	
-	public Shelf() {
-	
-	}
+
 	
 	public int getShelfCapacidade() {
 		return shelfCapacidade;
