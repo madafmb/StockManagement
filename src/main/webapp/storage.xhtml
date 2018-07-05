@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Storage</title>
+</h:head>
+
+<h:body>
+	<h3>Select a product and a shell by ID:</h3>
+	<h:form>
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
+			columnClasses="label, value">
+			<p:outputLabel for="product" value="Product:" />
+			<p:selectOneListbox id="product" value="#{productBean.option}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{productBean.allProduct}" var="p"
+					itemLabel="#{p.id}" itemValue="#{p}">
+				</f:selectItems>
+			</p:selectOneListbox>
+		</h:panelGrid>
+
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
+			columnClasses="label, value">
+			<p:outputLabel for="shelf" value="Shelf:" />
+			<p:selectOneListbox id="shelf" value="#{shelfBean.option}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{shelfBean.allShelf}" var="s"
+					itemLabel="#{s.id}" itemValue="#{s}">
+				</f:selectItems>
+			</p:selectOneListbox>
+		</h:panelGrid>
+
+		<p:separator />
+
+		<p:commandButton value="Submit"
+			action="#{productBean.addShelf(productBean.option,shelfBean.option)}" />
+
+	<p:commandButton value="Back"
+			action="index" />
+	</h:form>
+
+</h:body>
+</html>

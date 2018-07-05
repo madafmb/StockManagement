@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Stock Management</title>
+</h:head>
+
+<h:body>
+	<p:growl id="msgs" showDetail="true" />
+	<h:form id="formP">
+		<h1>Stock Management</h1>
+
+		<p:splitButton value="Products">
+			<p:menuitem value="Create" outcome="createProduct" />
+			<p:menuitem value="Storage" outcome="storage"/>
+		</p:splitButton>
+
+
+		<p:dataTable id="productTable" var="product"
+			value="#{productBean.allProduct}" editable="true"
+			style="margin-bottom:20px">
+			<f:facet name="header">
+         		 Products
+       			</f:facet>
+			<p:ajax event="rowEdit" listener="#{productBean.onRowEdit}"
+				update="msgs" />
+			<p:ajax event="rowEditCancel" listener="#{productBean.onRowCancel}"
+				update="msgs" />
+
+			<p:column headerText="ID">
+				
+						<h:outputText value="#{product.id}" />
+					
+			</p:column>
+
+			<p:column headerText="Name">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{product.produtoNome}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{product.produtoNome}" style="width:100%"
+							/>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Discount">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{product.produtoDesconto}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{product.produtoDesconto}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="IVA">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{product.produtoIVA}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{product.produtoIVA}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="PVP">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{product.produtoPVP}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{product.produtoPVP}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+		<p:column headerText="Shelves">
+				
+						<h:outputText value="#{product.toString()}"  />
+				
+					
+			</p:column>
+
+
+			<p:column>
+			
+				Edit <p:rowEditor />
+
+			</p:column>
+
+			<p:column>
+				<p:commandLink value="Delete"
+					action="#{productBean.deleteProduct(product)}"
+					update="productTable formS:shelfTable" />
+			</p:column>
+
+
+
+		</p:dataTable>
+	</h:form>
+	<h:form id="formS">
+
+		<p:splitButton value="Shelves">
+			<p:menuitem value="Create" outcome="createShelf" />
+		</p:splitButton>
+
+
+		<p:dataTable id="shelfTable" var="shelf" value="#{shelfBean.allShelf}"
+			editable="true" style="margin-bottom:20px">
+			<f:facet name="header">
+         		Shelves
+       			</f:facet>
+			<p:ajax event="rowEdit" listener="#{shelfBean.onRowEdit}"
+				update="msgs" />
+			<p:ajax event="rowEditCancel" listener="#{shelfBean.onRowCancel}"
+				update="msgs" />
+
+			<p:column headerText="ID">
+	
+						<h:outputText value="#{shelf.id}" />
+					
+			</p:column>
+
+
+			<p:column headerText="Capacity">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{shelf.shelfCapacidade}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{shelf.shelfCapacidade}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Price">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{shelf.shelfPreco}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{shelf.shelfPreco}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column headerText="Products">
+				
+						<h:outputText value="#{shelf.toString()}"  />
+					
+			</p:column>
+			
+
+
+			<p:column>
+			
+				Edit <p:rowEditor />
+
+			</p:column>
+
+			<p:column>
+				<p:commandLink value="Delete"
+					action="#{shelfBean.deleteShelf(shelf)}" update="shelfTable formP:productTable" />
+			</p:column>
+
+
+
+		</p:dataTable>
+
+
+	</h:form>
+</h:body>
+</html>

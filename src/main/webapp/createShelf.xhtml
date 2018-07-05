@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+		<title> Shelves </title>
+	</h:head>
+	
+	<h:body>
+   
+		<h:form>
+		<h1 >Create Shelves </h1>
+		<h3> Capacity</h3>
+    	<p:inputTextarea value="#{shelfBean.shelf.shelfCapacidade}" rows="1" cols="15" />
+    	<h3> Price</h3>
+    	<p:inputTextarea value="#{shelfBean.shelf.shelfPreco}" rows="1" cols="15" />
+		<br/>
+		<br/>
+		<p:commandButton value="Save" action="#{shelfBean.createShelf(shelfBean.shelf)}"  />
+		</h:form>
+	</h:body>
+</html>
