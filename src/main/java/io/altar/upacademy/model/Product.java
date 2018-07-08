@@ -12,7 +12,7 @@ public class Product extends Entity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ArrayList <Shelf> listaPrateleiras = new ArrayList<Shelf>() ; //Uma lista de prateleiras onde est� exposto
+	private ArrayList <Shelf> listaPrateleiras = new ArrayList<Shelf>() ;
 
 	private float produtoDesconto;
 	
@@ -78,6 +78,7 @@ public class Product extends Entity implements Serializable{
             : (other == this);
     }
 
+
     @Override
     public int hashCode() {
         return (id != null)
@@ -85,6 +86,8 @@ public class Product extends Entity implements Serializable{
             : super.hashCode();
     }
 
+
+    
     @Override
     public String toString() {
     	String prateleiras="";
@@ -92,8 +95,6 @@ public class Product extends Entity implements Serializable{
 			prateleiras +=s.id  + " ";
 			
 			}
-		
-		
 		
 		return "ID: " + prateleiras; 
 	

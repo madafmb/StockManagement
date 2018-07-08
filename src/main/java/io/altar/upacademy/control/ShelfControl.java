@@ -1,6 +1,6 @@
 package io.altar.upacademy.control;
 
-import java.io.Serializable;
+
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -9,26 +9,21 @@ import io.altar.upacademy.model.Shelf;
 import io.altar.upacademy.repositories.ShelfRepository;
 
 @RequestScoped
-public class ShelfControl implements Serializable {
+public class ShelfControl  {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private ShelfRepository dbs;
+	ShelfRepository dbs;
 
-//	public void criarShelf(Shelf s) {
-//	
-//		dbs.addEntity(s);	
-//	}
+	public void criarShelf(Shelf s) {
 	
+		dbs.addEntity(s);	
+	}
 	
-//
-//	public void editarShelf(Shelf s) {
-//		dbs.editEntity(s);
-//	}
+
+	public void editarShelf(Shelf s) {
+		dbs.editEntity(s);
+	}
 //	
 //	public Shelf getShelf(long id) {
 //		Shelf s= dbs.getEntity(id);
@@ -49,7 +44,7 @@ public class ShelfControl implements Serializable {
 //		return dbs.getEntity();
 //		
 //	}
-	
+//	
 	
 	
 }

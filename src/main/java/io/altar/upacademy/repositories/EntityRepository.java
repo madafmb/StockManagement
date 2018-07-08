@@ -1,31 +1,56 @@
 package io.altar.upacademy.repositories;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import io.altar.upacademy.model.Entity;
 
 
+@Transactional
 public abstract class EntityRepository<T extends Entity> {
+
+@PersistenceContext(unitName="database")
+private EntityManager em;
 	
-	
-	
-//	public void editEntity(Entity T) {
-//		em.merge(T);
-//	}
-//
-//	public void removeEntity (Entity T, long id) {
-//		em.find(Entity.class, id);
-//		em.remove(T);
-//	}
-//	
-//	public void getEntity (Entity T, long id) {
-//		em.find(Entity.class, id);
-//		
-//	}
+private Class<T> aClass;
+private String className;
+
+public EntityRepository(Class<T> aClass) {
+	this.aClass=aClass;
+	className=aClass.getSimpleName();
 }
+ 
+	public void addEntity(Entity T ) {
+		em.persist(T);
+	}
+	
+
+	public List<T> getAll(Class<T> entityClass) {
+	     Query query = em.createQuery("from " + entityClass.getName());
+	    return query.getResultList();
+	}
+
+	public void editEntity(Entity T) {
+		em.merge(T);
+	}
+
+	public void removeEntity (long id) {
+		em.find(aClass, id);
+		em.remove(id);
+	}
+	
+	public T getEntity (long id) {
+		T e=em.find(aClass, id);
+		return e;
+		
+	}
+}
+
 
 
 //private Map<Long,T> map = new HashMap<>();

@@ -39,11 +39,11 @@ public class ShelfBean implements Serializable {
 		shelf = s ;
 	}
 	
-//	public String createShelf(Shelf s) {
-//		sc.criarShelf(s);
-//		return "index" + "? faces-redirect=true ";		
-//	}
-//	
+	public String createShelf(Shelf s) {
+		sc.criarShelf(s);
+		return "index" + "? faces-redirect=true ";		
+	}
+	
 //	public Collection<Shelf> getAllShelf() {
 //		return sc.getShelf();	
 //	}

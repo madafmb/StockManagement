@@ -32,8 +32,6 @@ public class ProductBean implements Serializable {
 	@Inject 
 	private ProductControl pc;
 
-
-
 	private Product product = new Product();
 	private Product option;
 
@@ -51,7 +49,7 @@ public class ProductBean implements Serializable {
 
 		return "index" + "? faces-redirect=true ";	
 	}
-//
+
 //	public Collection<Product> getAllProduct() {
 //		return pc.getProduto();	
 //	}
@@ -99,7 +97,7 @@ public class ProductBean implements Serializable {
 //    	
 //    	
 //    }
-       
+//       
 
     
    
