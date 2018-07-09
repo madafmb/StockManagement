@@ -3,6 +3,8 @@ package io.altar.upacademy.model;
 import java.io.Serializable;
 
 @javax.persistence.Entity
+
+
 public class Shelf extends Entity implements Serializable{
 	
 	/**
@@ -10,6 +12,9 @@ public class Shelf extends Entity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int shelfCapacidade; //Capacidade
+	
+//	@ManyToOne
+//  @JoinColumn(name = "products")
 	private Product  shelfProduto; // Produto que alberga
 	private float shelfPreco; // Pre�o de aluguer de localiza��o diario
 	

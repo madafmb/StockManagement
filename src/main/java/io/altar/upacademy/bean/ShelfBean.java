@@ -12,7 +12,6 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import io.altar.upacademy.control.ShelfControl;
-import io.altar.upacademy.model.Product;
 import io.altar.upacademy.model.Shelf;
 
 
@@ -44,32 +43,32 @@ public class ShelfBean implements Serializable {
 		return "index" + "? faces-redirect=true ";		
 	}
 	
-//	public Collection<Shelf> getAllShelf() {
-//		return sc.getShelf();	
-//	}
-//	public void onRowEdit(RowEditEvent editShelf) {
-//
-//		FacesMessage msg = new FacesMessage("Shelf Edited");
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//
-//	public void onRowCancel(RowEditEvent editProduct) {
-//		FacesMessage msg = new FacesMessage("Edit Cancelled");
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//	public void deleteShelf(Shelf s) {
-//		sc.removeShelf(s.getId());
-//	}
-//	
-//	public Shelf getOption() {
-//        return option;
-//    }
-// 
-//    public void setOption(Shelf option) {
-//        this.option = option;
-//    }
-//    
+	public Collection<Shelf> getAllShelf() {
+		return sc.getShelf();	
+	}
+	public void onRowEdit(RowEditEvent editShelf) {
+
+		FacesMessage msg = new FacesMessage("Shelf Edited");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+
+	public void onRowCancel(RowEditEvent editProduct) {
+		FacesMessage msg = new FacesMessage("Edit Cancelled");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void deleteShelf(Shelf s) {
+		sc.removeShelf(s.getId());
+	}
+	
+	public Shelf getOption() {
+        return option;
+    }
+ 
+    public void setOption(Shelf option) {
+        this.option = option;
+    }
+    
 
 }

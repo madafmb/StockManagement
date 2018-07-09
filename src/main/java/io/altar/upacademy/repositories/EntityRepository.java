@@ -16,37 +16,37 @@ public abstract class EntityRepository<T extends Entity> {
 
 @PersistenceContext(unitName="database")
 private EntityManager em;
-	
-private Class<T> aClass;
-private String className;
 
-public EntityRepository(Class<T> aClass) {
-	this.aClass=aClass;
-	className=aClass.getSimpleName();
-}
+
+	private long maiorID = 1;
  
-	public void addEntity(Entity T ) {
+	public long addEntity(Entity T) {
 		em.persist(T);
+		T.setId(maiorID);
+		return maiorID++;
+		
 	}
 	
 
 	public List<T> getAll(Class<T> entityClass) {
-	     Query query = em.createQuery("from " + entityClass.getName());
+	    Query query = em.createQuery("Select table from " + entityClass.getName() + " table");
 	    return query.getResultList();
 	}
+	
+	
 
 	public void editEntity(Entity T) {
 		em.merge(T);
 	}
 
-	public void removeEntity (long id) {
-		em.find(aClass, id);
-		em.remove(id);
+	public void removeEntity (Class<T> entityClass, long id) {
+		T object = em.find(entityClass, id);
+		em.remove(object);
 	}
 	
-	public T getEntity (long id) {
-		T e=em.find(aClass, id);
-		return e;
+	public T getEntity (Class<T> entityClass, long id) {
+		T object =em.find(entityClass, id);
+		return object;
 		
 	}
 }

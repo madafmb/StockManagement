@@ -1,6 +1,8 @@
 package io.altar.upacademy.control;
 
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -29,14 +31,13 @@ public class ProductControl  {
 	
 	
 	public Product getProduto(long id) {
-		Product p= dbp.getEntity(id);
+		Product p= dbp.getEntity(Product.class, id);
 		return p;
 	}
 
 	
 	public void removeProduto(long id) {
-
-		Product p = ProductControl.getProduto(id);
+		Product p = getProduto(id);
 		if(p.getListaPrateleiras()!=null){
 			
 			for(Shelf s: p.getListaPrateleiras()) {
@@ -44,19 +45,14 @@ public class ProductControl  {
 			}
 		}
 		
-		dbp.removeEntity(id);
+		dbp.removeEntity(Product.class, id);
 	}
 	
 	
-//	public Product getAllProduto(Product p) {
-//		
-//	}
-//	
-//	public  Collection<Product> getProduto() {
-//		return dbp.getEntity();
-//		
-//	}
-//	
+	public List<Product> getAllProduto() {
+		return dbp.getAll(Product.class);
+	}
 	
+
 	
 }

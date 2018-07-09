@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @javax.persistence.Entity
+
 public class Product extends Entity implements Serializable{
 	
 	/**
@@ -12,6 +13,8 @@ public class Product extends Entity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+//	@OneToMany(mappedBy = "Product")
+	
 	private ArrayList <Shelf> listaPrateleiras = new ArrayList<Shelf>() ;
 
 	private float produtoDesconto;

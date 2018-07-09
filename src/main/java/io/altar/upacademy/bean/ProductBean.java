@@ -3,7 +3,7 @@ package io.altar.upacademy.bean;
 
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -14,7 +14,6 @@ import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 import io.altar.upacademy.control.ProductControl;
-import io.altar.upacademy.control.ShelfControl;
 import io.altar.upacademy.model.Product;
 import io.altar.upacademy.model.Shelf;
 
@@ -50,54 +49,54 @@ public class ProductBean implements Serializable {
 		return "index" + "? faces-redirect=true ";	
 	}
 
-//	public Collection<Product> getAllProduct() {
-//		return pc.getProduto();	
-//	}
-//
-//	public void onRowEdit(RowEditEvent editProduct) {
-//
-//		FacesMessage msg = new FacesMessage("Product Edited");
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//
-//	public void onRowCancel(RowEditEvent editProduct) {
-//		FacesMessage msg = new FacesMessage("Edit Cancelled");
-//		FacesContext.getCurrentInstance().addMessage(null, msg);
-//	}
-//
-//	public void deleteProduct(Product p) {
-//		pc.removeProduto(p.getId());
-//	}
-//	
-//
-//    public Product getOption() {
-//        return option;
-//    }
-// 
-//    public void setOption(Product option) {
-//        this.option = option;
-//    }
-//    
-//    public String addShelf(Product p, Shelf s) {
-//    	
-//    	if(p.getListaPrateleiras().contains(s)) { return "index"; }
-//    	if (s.getShelfProduto()!=null) {
-//    		Product tempProduct= s.getShelfProduto();
-//    		tempProduct.getListaPrateleiras().remove(s);
-//    	}
-//    	
-//    		
-//    	p.addToShelfList(s);
-//    	s.setShelfProduto(p);
-//    	pc.editarProduto(p);    
-//       
-//    	
-//    	return "index" + "? faces-redirect=true ";	
-//    	
-//    	
-//    }
-//       
+	public List<Product> getAllProduct() {
+		return pc.getAllProduto();
+	}
+
+	public void onRowEdit(RowEditEvent editProduct) {
+
+		FacesMessage msg = new FacesMessage("Product Edited");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+
+	public void onRowCancel(RowEditEvent editProduct) {
+		FacesMessage msg = new FacesMessage("Edit Cancelled");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void deleteProduct(Product p) {
+		pc.removeProduto(p.getId());
+	}
+	
+
+    public Product getOption() {
+        return option;
+    }
+ 
+    public void setOption(Product option) {
+        this.option = option;
+    }
+    
+    public String addShelf(Product p, Shelf s) {
+    	
+    	if(p.getListaPrateleiras().contains(s)) { return "index"; }
+    	if (s.getShelfProduto()!=null) {
+    		Product tempProduct= s.getShelfProduto();
+    		tempProduct.getListaPrateleiras().remove(s);
+    	}
+    	
+    		
+    	p.addToShelfList(s);
+    	s.setShelfProduto(p);
+    	pc.editarProduto(p);    
+       
+    	
+    	return "index" + "? faces-redirect=true ";	
+    	
+    	
+    }
+       
 
     
    
