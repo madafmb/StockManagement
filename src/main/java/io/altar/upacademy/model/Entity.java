@@ -2,6 +2,7 @@ package io.altar.upacademy.model;
 
 
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -9,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 public class Entity  {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected Long id;
 
 	public long getId() {

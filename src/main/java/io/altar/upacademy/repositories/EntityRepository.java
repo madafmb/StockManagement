@@ -15,33 +15,34 @@ import io.altar.upacademy.model.Entity;
 public abstract class EntityRepository<T extends Entity> {
 
 @PersistenceContext(unitName="database")
-private EntityManager em;
+protected EntityManager em;
 
-
-	private long maiorID = 1;
+protected List<T> localList;
  
-	public long addEntity(Entity T) {
+	public List<T> getLocalList() {
+		return localList;
+	}
+
+	public void addEntity(Entity T) {
 		em.persist(T);
-		T.setId(maiorID);
-		return maiorID++;
+		updateLocalList();
 		
 	}
 	
-
-	public List<T> getAll(Class<T> entityClass) {
-	    Query query = em.createQuery("Select table from " + entityClass.getName() + " table");
-	    return query.getResultList();
+	public List<T> listEntity(Class<T> entClass) {
+		return localList;
 	}
-	
+
+
 	
 
 	public void editEntity(Entity T) {
 		em.merge(T);
+		
 	}
 
-	public void removeEntity (Class<T> entityClass, long id) {
-		T object = em.find(entityClass, id);
-		em.remove(object);
+	public void removeEntity (Entity T) {
+		em.remove(em.merge(T));
 	}
 	
 	public T getEntity (Class<T> entityClass, long id) {
@@ -49,6 +50,7 @@ private EntityManager em;
 		return object;
 		
 	}
+	public abstract void updateLocalList();
 }
 
 
@@ -89,5 +91,8 @@ private EntityManager em;
 //		}
 //		
 //	}
-	
+//public List<T> getAll(Class<T> entityClass) {
+//Query query = em.createQuery("Select table from " + entityClass.getName() + " table");
+//return query.getResultList();
+//}
 

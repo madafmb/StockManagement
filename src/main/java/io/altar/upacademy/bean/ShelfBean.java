@@ -50,6 +50,8 @@ public class ShelfBean implements Serializable {
 
 		FacesMessage msg = new FacesMessage("Shelf Edited");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		Shelf s = (Shelf) editShelf.getObject();
+    	sc.editarShelf(s);
 	}
 
 
@@ -59,7 +61,7 @@ public class ShelfBean implements Serializable {
 	}
 
 	public void deleteShelf(Shelf s) {
-		sc.removeShelf(s.getId());
+		sc.removeShelf(s);
 	}
 	
 	public Shelf getOption() {
@@ -70,5 +72,8 @@ public class ShelfBean implements Serializable {
         this.option = option;
     }
     
+    public void updateList() {
+		sc.updateList();
+	}
 
 }

@@ -1,7 +1,5 @@
 package io.altar.upacademy.bean;
 
-
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,7 +15,6 @@ import io.altar.upacademy.control.ProductControl;
 import io.altar.upacademy.model.Product;
 import io.altar.upacademy.model.Shelf;
 
-
 @Named("productBean")
 @RequestScoped
 
@@ -27,8 +24,7 @@ public class ProductBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -8688108795492111459L;
 
-
-	@Inject 
+	@Inject
 	private ProductControl pc;
 
 	private Product product = new Product();
@@ -42,11 +38,10 @@ public class ProductBean implements Serializable {
 		product = p;
 	}
 
-
 	public String createProduct(Product p) {
 		pc.criarProduto(p);
 
-		return "index" + "? faces-redirect=true ";	
+		return "index" + "? faces-redirect=true ";
 	}
 
 	public List<Product> getAllProduct() {
@@ -57,49 +52,48 @@ public class ProductBean implements Serializable {
 
 		FacesMessage msg = new FacesMessage("Product Edited");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		Product p = (Product) editProduct.getObject();
+		pc.editarProduto(p);
 	}
-
 
 	public void onRowCancel(RowEditEvent editProduct) {
 		FacesMessage msg = new FacesMessage("Edit Cancelled");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+
 	}
 
 	public void deleteProduct(Product p) {
-		pc.removeProduto(p.getId());
+		pc.removeProduto(p);
 	}
-	
 
-    public Product getOption() {
-        return option;
-    }
- 
-    public void setOption(Product option) {
-        this.option = option;
-    }
-    
-    public String addShelf(Product p, Shelf s) {
-    	
-    	if(p.getListaPrateleiras().contains(s)) { return "index"; }
-    	if (s.getShelfProduto()!=null) {
-    		Product tempProduct= s.getShelfProduto();
-    		tempProduct.getListaPrateleiras().remove(s);
-    	}
-    	
-    		
-    	p.addToShelfList(s);
-    	s.setShelfProduto(p);
-    	pc.editarProduto(p);    
-       
-    	
-    	return "index" + "? faces-redirect=true ";	
-    	
-    	
-    }
-       
+	public Product getOption() {
+		return option;
+	}
 
-    
-   
- 
-	
+	public void setOption(Product option) {
+		this.option = option;
+	}
+
+	public String addShelf(Product p, Shelf s) {
+
+		if (p.getListaPrateleiras().contains(s)) {
+			return "index";
+		}
+		if (s.getShelfProduto() != null) {
+			Product tempProduct = s.getShelfProduto();
+			tempProduct.getListaPrateleiras().remove(s);
+		}
+
+		p.addToShelfList(s);
+		s.setShelfProduto(p);
+		pc.editarProduto(p);
+
+		return "index" + "? faces-redirect=true ";
+
+	}
+
+	public void updateList() {
+		pc.updateList();
+	}
+
 }

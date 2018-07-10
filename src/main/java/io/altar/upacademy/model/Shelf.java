@@ -2,6 +2,9 @@ package io.altar.upacademy.model;
 
 import java.io.Serializable;
 
+import javax.persistence.ManyToOne;
+import javax.persistence.PreRemove;
+
 @javax.persistence.Entity
 
 
@@ -13,8 +16,7 @@ public class Shelf extends Entity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int shelfCapacidade; //Capacidade
 	
-//	@ManyToOne
-//  @JoinColumn(name = "products")
+	@ManyToOne
 	private Product  shelfProduto; // Produto que alberga
 	private float shelfPreco; // Pre�o de aluguer de localiza��o diario
 	
@@ -61,6 +63,13 @@ public class Shelf extends Entity implements Serializable{
     	
         return " ID: " + productId;
     }
+
+	@PreRemove
+	public void preRemove() {
+		shelfProduto.getListaPrateleiras().remove(this);
+	}
+    
+    
 //	@Override
 //	public String toString() {
 //		

@@ -17,6 +17,8 @@ public class ProductControl  {
 	
 	@Inject
 	ProductRepository dbp;
+	@Inject
+	ShelfControl shelfControl;
 	
 	public void criarProduto(Product p) {
 		
@@ -36,23 +38,23 @@ public class ProductControl  {
 	}
 
 	
-	public void removeProduto(long id) {
-		Product p = getProduto(id);
-		if(p.getListaPrateleiras()!=null){
-			
+	public void removeProduto(Product p) {
 			for(Shelf s: p.getListaPrateleiras()) {
 				s.setShelfProduto(null);
 			}
-		}
 		
-		dbp.removeEntity(Product.class, id);
+		dbp.removeEntity(p);
+		updateList();
+		shelfControl.updateList();
 	}
 	
 	
 	public List<Product> getAllProduto() {
-		return dbp.getAll(Product.class);
+		return dbp.getLocalList();
 	}
 	
-
+	public void updateList() {
+		dbp.updateLocalList();
+	}
 	
 }

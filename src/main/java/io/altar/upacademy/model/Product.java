@@ -3,6 +3,11 @@ package io.altar.upacademy.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @javax.persistence.Entity
 
@@ -13,9 +18,9 @@ public class Product extends Entity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-//	@OneToMany(mappedBy = "Product")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "shelfProduto", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	
-	private ArrayList <Shelf> listaPrateleiras = new ArrayList<Shelf>() ;
+	private List <Shelf> listaPrateleiras = new ArrayList<Shelf>() ;
 
 	private float produtoDesconto;
 	
@@ -26,11 +31,11 @@ public class Product extends Entity implements Serializable{
 	private String produtoNome;
 
 	
-	public ArrayList<Shelf> getListaPrateleiras() {
+	public List<Shelf> getListaPrateleiras() {
 		return listaPrateleiras;
 	}
 
-	public void setListaPrateleiras(ArrayList<Shelf> listaPrateleiras) {
+	public void setListaPrateleiras(List<Shelf> listaPrateleiras) {
 		this.listaPrateleiras = listaPrateleiras;
 	}
 

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
-import io.altar.upacademy.model.Product;
 import io.altar.upacademy.model.Shelf;
 import io.altar.upacademy.repositories.ShelfRepository;
 
@@ -17,7 +16,9 @@ public class ShelfControl  {
 	
 	@Inject
 	ShelfRepository dbs;
-
+	@Inject
+	ProductControl productControl;
+	
 	public void criarShelf(Shelf s) {
 	
 		dbs.addEntity(s);	
@@ -33,22 +34,24 @@ public class ShelfControl  {
 		return s;
 	}
 	
-	public void removeShelf(long id) {
-		Shelf s = getShelf(id);
-		if(s.getShelfProduto()!=null ) {
-			Product tempProduct= s.getShelfProduto();
-			tempProduct.getListaPrateleiras().remove(s);
-		}
+	public void removeShelf(Shelf s) {
+
+
+		//s.getShelfProduto().getListaPrateleiras().remove(s);
+
 		
-		dbs.removeEntity(Shelf.class,id);
+		dbs.removeEntity(s);
+		updateList();
+		productControl.updateList();
 	}
 	
 	public List<Shelf> getShelf() {
-		return dbs.getAll(Shelf.class);
-		
+		return dbs.getLocalList();
 	}
 	
-	
+	public void updateList() {
+		dbs.updateLocalList();
+	}
 	
 }
 
