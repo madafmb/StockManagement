@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import io.altar.upacademy.model.Entity;
@@ -29,13 +28,6 @@ protected List<T> localList;
 		
 	}
 	
-	public List<T> listEntity(Class<T> entClass) {
-		return localList;
-	}
-
-
-	
-
 	public void editEntity(Entity T) {
 		em.merge(T);
 		
@@ -44,13 +36,16 @@ protected List<T> localList;
 	public void removeEntity (Entity T) {
 		em.remove(em.merge(T));
 	}
+	// tem de se por o merge pq está detached
 	
 	public T getEntity (Class<T> entityClass, long id) {
 		T object =em.find(entityClass, id);
 		return object;
 		
 	}
+	
 	public abstract void updateLocalList();
+	
 }
 
 
@@ -95,4 +90,6 @@ protected List<T> localList;
 //Query query = em.createQuery("Select table from " + entityClass.getName() + " table");
 //return query.getResultList();
 //}
-
+//public List<T> listEntity(Class<T> entClass) {
+//return localList;
+//}

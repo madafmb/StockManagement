@@ -21,6 +21,6 @@ public class ProductRepository extends EntityRepository<Product> {
 	public void updateLocalList() {
 		loadFromDB();
 	}
-
-	
 }
+
+//•	@ApplicationScoped: com esta opção o ciclo de vida do bean é permanente enquanto a aplicação estiver executando, ou seja, se inicia na primeira requisição HTTP que envolva o bean e é destruído quando a aplicação é encerrada.

@@ -3,20 +3,21 @@ package io.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.event.RowEditEvent;
 
 import io.altar.upacademy.control.ProductControl;
+import io.altar.upacademy.control.ShelfControl;
 import io.altar.upacademy.model.Product;
 import io.altar.upacademy.model.Shelf;
 
 @Named("productBean")
-@RequestScoped
+@ViewScoped
 
 public class ProductBean implements Serializable {
 	/**
@@ -26,6 +27,9 @@ public class ProductBean implements Serializable {
 
 	@Inject
 	private ProductControl pc;
+	
+	@Inject
+	private ShelfControl sc;
 
 	private Product product = new Product();
 	private Product option;
@@ -79,14 +83,17 @@ public class ProductBean implements Serializable {
 		if (p.getListaPrateleiras().contains(s)) {
 			return "index";
 		}
-		if (s.getShelfProduto() != null) {
-			Product tempProduct = s.getShelfProduto();
-			tempProduct.getListaPrateleiras().remove(s);
-		}
+		
+//		if (s.getShelfProduto() != null) {
+//		Product tempProduct = s.getShelfProduto();
+//		tempProduct.getListaPrateleiras().remove(s);
+//	}
 
 		p.addToShelfList(s);
 		s.setShelfProduto(p);
 		pc.editarProduto(p);
+		sc.updateList();
+		pc.updateList();
 
 		return "index" + "? faces-redirect=true ";
 

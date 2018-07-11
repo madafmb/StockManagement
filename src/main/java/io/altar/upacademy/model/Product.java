@@ -19,6 +19,10 @@ public class Product extends Entity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "shelfProduto", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	//MERGE = Realiza a operação merge em cascata. Quando o MERGE é executado, ele também persiste os filhos caso eles ainda não tenham sido persistidos.
+	//REFRESH não salva, mas atualiza a entidade com as informações do banco.
+	//Persist - realiza a operação de persist em cada cascata.
+//	Oposto ao Lazy Loading, o Eager Loading carrega os dados mesmo que você não vá utilizá-los, mas é óbvio que você só utilizará esta técnica se de fato você for precisar com muita frequência dos dados carregados.
 	
 	private List <Shelf> listaPrateleiras = new ArrayList<Shelf>() ;
 

@@ -3,12 +3,12 @@ package io.altar.upacademy.bean;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.event.RowEditEvent;
 
 import io.altar.upacademy.control.ShelfControl;
@@ -16,7 +16,7 @@ import io.altar.upacademy.model.Shelf;
 
 
 @Named("shelfBean")
-@RequestScoped
+@ViewScoped
 public class ShelfBean implements Serializable {
 
 	/**
