@@ -56,6 +56,7 @@ public class ProductBean implements Serializable {
 
 		FacesMessage msg = new FacesMessage("Product Edited");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		
 		Product p = (Product) editProduct.getObject();
 		pc.editarProduto(p);
 	}

@@ -35,10 +35,7 @@ public class ShelfControl  {
 	}
 	
 	public void removeShelf(Shelf s) {
-
-
-//		s.getShelfProduto().getListaPrateleiras().remove(s);
-
+		
 		
 		dbs.removeEntity(s);
 		updateList();

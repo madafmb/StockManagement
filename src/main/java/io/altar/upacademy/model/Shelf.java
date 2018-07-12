@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.PreRemove;
+import javax.persistence.Table;
 
 @javax.persistence.Entity
 
-
+@Table(name="Shelves")
 public class Shelf extends Entity implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private int shelfCapacidade; //Capacidade
 	
 	@ManyToOne
@@ -66,7 +68,9 @@ public class Shelf extends Entity implements Serializable{
 
 	@PreRemove
 	public void preRemove() {
+		if (shelfProduto != null) {
 		shelfProduto.getListaPrateleiras().remove(this);
+		}
 	}
     
     

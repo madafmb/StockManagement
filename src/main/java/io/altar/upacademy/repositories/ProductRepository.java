@@ -24,3 +24,4 @@ public class ProductRepository extends EntityRepository<Product> {
 }
 
 //•	@ApplicationScoped: com esta opção o ciclo de vida do bean é permanente enquanto a aplicação estiver executando, ou seja, se inicia na primeira requisição HTTP que envolva o bean e é destruído quando a aplicação é encerrada.
+//@PostConstruct faz com que o método seja chamado logo após a inicialização do bean gerenciado
